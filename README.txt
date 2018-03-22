@@ -1,6 +1,3 @@
-# audiovis
-general audio visual stimulus presentation with expyriment
-
 
 audiovis.py plays audio or visual stimuli listed in csv files
 
@@ -14,12 +11,6 @@ Try:
 
 python audiovis.py  sounds/list1.csv  pictures/list1.csv  speech/list1.csv 
 
-and
-
-python audiovis.py  rsvp/list1.csv sounds/list1.csv
-
-
-
-Note: Press the space bar when the message' Ready' appears.
+Press the space bar when the message' Ready' appears.
 
 

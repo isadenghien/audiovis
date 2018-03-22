@@ -1,0 +1,32 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:31:40
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+1334,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1334,design,logged,
+1334,Experiment,started
+1335,Stimulus,presented,1
+2910,Keyboard,received,b't',wait_char
+2911,Stimulus,presented,2
+2912,stdout,received,'event text\xa0sort les il émettant ancien pièces des grande elle comptable ami le @ 1000'
+3902,Stimulus,presented,3
+3903,stdout,received,'event blank\xa0blank @ 4000'
+5653,stdout,received,'keypressed: 102 @\xa02741'
+6383,stdout,received,'keypressed: 100 @\xa03471'
+6909,Stimulus,presented,0
+6910,stdout,received,'event text\xa0de demain patient les anglais fleuve une locataire en vallée pieux une @ 5000'
+7000,stdout,received,'keypressed: 101 @\xa04088'
+7910,Stimulus,presented,4
+7911,stdout,received,'event blank\xa0blank @ 8000'
+8351,stdout,received,'keypressed: 100 @\xa05439'
+8801,stdout,received,'keypressed: 115 @\xa05889'
+9231,stdout,received,'keypressed: 113 @\xa06319'
+9831,stdout,received,'keypressed: 122 @\xa06919'
+10917,Stimulus,presented,0
+10918,Experiment,ended
+10918,Data,saved

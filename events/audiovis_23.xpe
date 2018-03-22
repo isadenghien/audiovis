@@ -1,0 +1,151 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:24:58
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+932,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+932,design,logged,
+932,Experiment,started
+935,Stimulus,presented,1
+2244,Keyboard,received,b't',wait_char
+2245,Stimulus,presented,2
+2246,stdout,received,'event text\xa0ami @ 2000'
+4236,Stimulus,presented,13
+4237,stdout,received,'event text\xa0ancien @ 2000'
+4237,Stimulus,presented,7
+4238,stdout,received,'event text\xa0comptable @ 2000'
+4242,Stimulus,presented,12
+4243,stdout,received,'event text\xa0des @ 2000'
+4259,Stimulus,presented,9
+4260,stdout,received,'event text\xa0elle @ 2000'
+4260,stdout,received,'...delayed @ 2014'
+4277,Stimulus,presented,11
+4278,stdout,received,'event text\xa0grande @ 2000'
+4278,stdout,received,'...delayed @ 2031'
+4293,Stimulus,presented,10
+4294,stdout,received,'event text\xa0il @ 2000'
+4294,stdout,received,'...delayed @ 2048'
+4309,Stimulus,presented,5
+4310,stdout,received,'event text\xa0le @ 2000'
+4310,stdout,received,'...delayed @ 2064'
+4327,Stimulus,presented,14
+4327,stdout,received,'event text\xa0les @ 2000'
+4328,stdout,received,'...delayed @ 2081'
+4343,Stimulus,presented,4
+4344,stdout,received,'event text\xa0pièces @ 2000'
+4344,stdout,received,'...delayed @ 2098'
+4360,Stimulus,presented,8
+4360,stdout,received,'event text\xa0sort @ 2000'
+4360,stdout,received,'...delayed @ 2114'
+4376,Stimulus,presented,3
+4377,stdout,received,'event text\xa0émettant @ 2000'
+4377,stdout,received,'...delayed @ 2131'
+4393,Stimulus,presented,6
+4393,stdout,received,'event blank\xa0blank @ 2400'
+4649,Stimulus,presented,0
+4650,stdout,received,'event blank\xa0blank @ 2400'
+4650,stdout,received,'...delayed @ 2404'
+4656,Stimulus,presented,0
+4657,stdout,received,'event blank\xa0blank @ 2400'
+4657,stdout,received,'...delayed @ 2411'
+4665,Stimulus,presented,0
+4665,stdout,received,'event blank\xa0blank @ 2400'
+4665,stdout,received,'...delayed @ 2419'
+4682,Stimulus,presented,0
+4683,stdout,received,'event blank\xa0blank @ 2400'
+4683,stdout,received,'...delayed @ 2436'
+4699,Stimulus,presented,0
+4699,stdout,received,'event blank\xa0blank @ 2400'
+4699,stdout,received,'...delayed @ 2453'
+4715,Stimulus,presented,0
+4716,stdout,received,'event blank\xa0blank @ 2400'
+4716,stdout,received,'...delayed @ 2470'
+4732,Stimulus,presented,0
+4732,stdout,received,'event blank\xa0blank @ 2400'
+4732,stdout,received,'...delayed @ 2486'
+4749,Stimulus,presented,0
+4749,stdout,received,'event blank\xa0blank @ 2400'
+4749,stdout,received,'...delayed @ 2503'
+4765,Stimulus,presented,0
+4766,stdout,received,'event blank\xa0blank @ 2400'
+4766,stdout,received,'...delayed @ 2520'
+4782,Stimulus,presented,0
+4783,stdout,received,'event blank\xa0blank @ 2400'
+4783,stdout,received,'...delayed @ 2537'
+4799,Stimulus,presented,0
+4799,stdout,received,'event blank\xa0blank @ 2400'
+4799,stdout,received,'...delayed @ 2553'
+4815,Stimulus,presented,0
+4816,stdout,received,'event text\xa0anglais @ 10000'
+12236,Stimulus,presented,18
+12237,stdout,received,'event text\xa0de @ 10000'
+12238,Stimulus,presented,15
+12238,stdout,received,'event text\xa0demain @ 10000'
+12249,Stimulus,presented,16
+12249,stdout,received,'event text\xa0en @ 10000'
+12249,stdout,received,'...delayed @ 10003'
+12266,Stimulus,presented,22
+12267,stdout,received,'event text\xa0fleuve @ 10000'
+12267,stdout,received,'...delayed @ 10021'
+12283,Stimulus,presented,19
+12284,stdout,received,'event text\xa0les @ 10000'
+12284,stdout,received,'...delayed @ 10037'
+12299,Stimulus,presented,4
+12299,stdout,received,'event text\xa0locataire @ 10000'
+12300,stdout,received,'...delayed @ 10053'
+12317,Stimulus,presented,21
+12318,stdout,received,'event text\xa0patient @ 10000'
+12318,stdout,received,'...delayed @ 10071'
+12333,Stimulus,presented,17
+12334,stdout,received,'event text\xa0pieux @ 10000'
+12334,stdout,received,'...delayed @ 10088'
+12349,Stimulus,presented,24
+12350,stdout,received,'event text\xa0une @ 10000'
+12350,stdout,received,'...delayed @ 10104'
+12366,Stimulus,presented,20
+12367,stdout,received,'event text\xa0une @ 10000'
+12367,stdout,received,'...delayed @ 10121'
+12383,Stimulus,presented,20
+12384,stdout,received,'event text\xa0vallée @ 10000'
+12384,stdout,received,'...delayed @ 10138'
+12399,Stimulus,presented,23
+12400,stdout,received,'event blank\xa0blank @ 10400'
+12646,Stimulus,presented,0
+12647,stdout,received,'event blank\xa0blank @ 10400'
+12647,stdout,received,'...delayed @ 10401'
+12653,Stimulus,presented,0
+12654,stdout,received,'event blank\xa0blank @ 10400'
+12654,stdout,received,'...delayed @ 10408'
+12660,Stimulus,presented,0
+12661,stdout,received,'event blank\xa0blank @ 10400'
+12661,stdout,received,'...delayed @ 10415'
+12672,Stimulus,presented,0
+12673,stdout,received,'event blank\xa0blank @ 10400'
+12673,stdout,received,'...delayed @ 10427'
+12689,Stimulus,presented,0
+12690,stdout,received,'event blank\xa0blank @ 10400'
+12690,stdout,received,'...delayed @ 10444'
+12705,Stimulus,presented,0
+12707,stdout,received,'event blank\xa0blank @ 10400'
+12707,stdout,received,'...delayed @ 10461'
+12722,Stimulus,presented,0
+12723,stdout,received,'event blank\xa0blank @ 10400'
+12723,stdout,received,'...delayed @ 10477'
+12748,Stimulus,presented,0
+12749,stdout,received,'event blank\xa0blank @ 10400'
+12749,stdout,received,'...delayed @ 10503'
+12760,Stimulus,presented,0
+12760,stdout,received,'event blank\xa0blank @ 10400'
+12760,stdout,received,'...delayed @ 10514'
+12773,Stimulus,presented,0
+12773,stdout,received,'event blank\xa0blank @ 10400'
+12774,stdout,received,'...delayed @ 10527'
+12788,Stimulus,presented,0
+12789,stdout,received,'event blank\xa0blank @ 10400'
+12789,stdout,received,'...delayed @ 10543'
+12805,Stimulus,presented,0
+12806,Experiment,ended

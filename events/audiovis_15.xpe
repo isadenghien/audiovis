@@ -1,0 +1,74 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 10:50:48
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+286,Picture,loaded,b'pictures/imag10.png'
+294,Picture,loaded,b'pictures/imag10.png'
+302,Picture,loaded,b'pictures/imag1.png'
+309,Picture,loaded,b'pictures/imag1.png'
+316,Picture,loaded,b'pictures/imag2.png'
+324,Picture,loaded,b'pictures/imag2.png'
+331,Picture,loaded,b'pictures/imag3.png'
+339,Picture,loaded,b'pictures/imag3.png'
+346,Picture,loaded,b'pictures/imag4.png'
+354,Picture,loaded,b'pictures/imag4.png'
+361,Picture,loaded,b'pictures/imag5.png'
+368,Picture,loaded,b'pictures/imag5.png'
+375,Picture,loaded,b'pictures/imag6.png'
+383,Picture,loaded,b'pictures/imag6.png'
+390,Picture,loaded,b'pictures/imag7.png'
+397,Picture,loaded,b'pictures/imag7.png'
+404,Picture,loaded,b'pictures/imag8.png'
+411,Picture,loaded,b'pictures/imag8.png'
+419,Picture,loaded,b'pictures/imag9.png'
+426,Picture,loaded,b'pictures/imag9.png'
+1117,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1117,design,logged,
+1117,Experiment,started
+1118,Stimulus,presented,1
+2476,Keyboard,received,b't',wait_char
+2477,Stimulus,presented,2
+4368,Stimulus,presented,10
+5374,Stimulus,presented,0
+5476,Stimulus,played,b'sounds/bird.wav'
+5876,Stimulus,presented,11
+6882,Stimulus,presented,0
+7373,Stimulus,presented,12
+7474,Stimulus,played,b'sounds/cat_y.wav'
+8379,Stimulus,presented,0
+8870,Stimulus,presented,13
+9471,Stimulus,played,b'sounds/chicken.wav'
+9877,Stimulus,presented,0
+9879,stdout,received,'missed event'
+9879,Stimulus,played,b'speech/phrases_pseudoM_set1_001.wav'
+10369,Stimulus,presented,14
+11375,Stimulus,presented,0
+11476,Stimulus,played,b'sounds/cow3.wav'
+11876,Stimulus,presented,15
+12875,Stimulus,presented,0
+13376,Stimulus,presented,16
+14382,Stimulus,presented,0
+14873,Stimulus,presented,17
+15474,Stimulus,played,b'sounds/coyote_howl.wav'
+15880,Stimulus,presented,0
+16371,Stimulus,presented,18
+16872,Stimulus,played,b'speech/phrases_pseudoM_set1_002.wav'
+17377,Stimulus,presented,0
+17468,Stimulus,played,b'sounds/dog_bark_x.wav'
+17868,Stimulus,presented,19
+18874,Stimulus,presented,0
+19475,Stimulus,played,b'sounds/cow_mad_x.wav'
+23875,Stimulus,played,b'speech/phrases_pseudoM_set1_003.wav'
+30875,Stimulus,played,b'speech/phrases_pseudoM_set1_004.wav'
+37875,Stimulus,played,b'speech/phrases_pseudoM_set1_005.wav'
+44876,Stimulus,played,b'speech/phrases_set1_006.wav'
+44878,Experiment,paused
+44881,Stimulus,presented,30
+44883,Keyboard,received,b'y',wait_char
+44883,Experiment,ended
+44883,Data,saved

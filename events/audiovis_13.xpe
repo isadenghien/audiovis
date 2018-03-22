@@ -1,0 +1,63 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 10:25:26
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+296,Picture,loaded,b'pictures/imag10.png'
+307,Picture,loaded,b'pictures/imag10.png'
+315,Picture,loaded,b'pictures/imag1.png'
+323,Picture,loaded,b'pictures/imag1.png'
+330,Picture,loaded,b'pictures/imag2.png'
+337,Picture,loaded,b'pictures/imag2.png'
+344,Picture,loaded,b'pictures/imag3.png'
+352,Picture,loaded,b'pictures/imag3.png'
+359,Picture,loaded,b'pictures/imag4.png'
+367,Picture,loaded,b'pictures/imag4.png'
+374,Picture,loaded,b'pictures/imag5.png'
+381,Picture,loaded,b'pictures/imag5.png'
+389,Picture,loaded,b'pictures/imag6.png'
+396,Picture,loaded,b'pictures/imag6.png'
+403,Picture,loaded,b'pictures/imag7.png'
+410,Picture,loaded,b'pictures/imag7.png'
+417,Picture,loaded,b'pictures/imag8.png'
+425,Picture,loaded,b'pictures/imag8.png'
+433,Picture,loaded,b'pictures/imag9.png'
+441,Picture,loaded,b'pictures/imag9.png'
+1108,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1108,design,logged,
+1108,Experiment,started
+1109,Stimulus,presented,1
+2613,Keyboard,received,b't',wait_char
+2613,Stimulus,presented,2
+4505,Stimulus,presented,10
+5511,Stimulus,presented,0
+5612,Stimulus,played,b'sounds/bird.wav'
+6013,Stimulus,presented,11
+7019,Stimulus,presented,0
+7510,Stimulus,presented,12
+7610,Stimulus,played,b'sounds/cat_y.wav'
+8516,Stimulus,presented,0
+9008,Stimulus,presented,13
+9608,Stimulus,played,b'sounds/chicken.wav'
+10014,Stimulus,presented,0
+10505,Stimulus,presented,14
+11511,Stimulus,presented,0
+11612,Stimulus,played,b'sounds/cow3.wav'
+12013,Stimulus,presented,15
+13019,Stimulus,presented,0
+13510,Stimulus,presented,16
+14516,Stimulus,presented,0
+15008,Stimulus,presented,17
+15608,Stimulus,played,b'sounds/coyote_howl.wav'
+16014,Stimulus,presented,0
+16505,Stimulus,presented,18
+17511,Stimulus,presented,0
+17612,Stimulus,played,b'sounds/dog_bark_x.wav'
+18013,Stimulus,presented,19
+19019,Stimulus,presented,0
+19610,Stimulus,played,b'sounds/cow_mad_x.wav'
+19610,Experiment,ended

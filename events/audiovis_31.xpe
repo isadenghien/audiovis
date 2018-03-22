@@ -1,0 +1,82 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:36:05
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+833,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+833,design,logged,
+833,Experiment,started
+835,Stimulus,presented,1
+1921,Keyboard,received,b't',wait_char
+1922,Stimulus,presented,2
+1923,stdout,received,'event text\xa0sort @ 2000'
+3913,Stimulus,presented,3
+3914,stdout,received,'event text\xa0les @ 2400'
+4314,Stimulus,presented,4
+4315,stdout,received,'event text\xa0il @ 2800'
+4715,Stimulus,presented,5
+4716,stdout,received,'event sound\xa0bird.wav @ 3000'
+4916,Stimulus,played,b'sounds/bird.wav'
+4916,stdout,received,'event text\xa0émettant @ 3200'
+5116,Stimulus,presented,6
+5117,stdout,received,'event text\xa0ancien @ 3600'
+5517,Stimulus,presented,7
+5518,stdout,received,'event text\xa0pièces @ 4000'
+5918,Stimulus,presented,8
+5919,stdout,received,'event text\xa0des @ 4400'
+6319,Stimulus,presented,9
+6320,stdout,received,'event text\xa0grande @ 4800'
+6720,Stimulus,presented,10
+6721,stdout,received,'event sound\xa0cat_y.wav @ 5000'
+6921,Stimulus,played,b'sounds/cat_y.wav'
+6921,stdout,received,'event text\xa0elle @ 5200'
+7121,Stimulus,presented,11
+7122,stdout,received,'event text\xa0comptable @ 5600'
+7522,Stimulus,presented,12
+7523,stdout,received,'event text\xa0ami @ 6000'
+7913,Stimulus,presented,13
+7914,stdout,received,'event text\xa0le @ 6400'
+8313,Stimulus,presented,14
+8314,stdout,received,'event blank\xa0blank @ 6800'
+8720,Stimulus,presented,0
+8722,stdout,received,'event sound\xa0chicken.wav @ 7000'
+8921,Stimulus,played,b'sounds/chicken.wav'
+8921,stdout,received,'event sound\xa0cow3.wav @ 9000'
+10921,Stimulus,played,b'sounds/cow3.wav'
+10921,stdout,received,'event text\xa0de @ 10000'
+11921,Stimulus,presented,15
+11922,stdout,received,'event text\xa0demain @ 10400'
+12322,Stimulus,presented,16
+12323,stdout,received,'event text\xa0patient @ 10800'
+12713,Stimulus,presented,17
+12714,stdout,received,'event text\xa0les @ 11200'
+13115,Stimulus,presented,4
+13115,stdout,received,'event text\xa0anglais @ 11600'
+13515,Stimulus,presented,18
+13516,stdout,received,'event text\xa0fleuve @ 12000'
+13916,Stimulus,presented,19
+13917,stdout,received,'event text\xa0une @ 12400'
+14317,Stimulus,presented,20
+14318,stdout,received,'event text\xa0locataire @ 12800'
+14718,Stimulus,presented,21
+14719,stdout,received,'event sound\xa0coyote_howl.wav @ 13000'
+14919,Stimulus,played,b'sounds/coyote_howl.wav'
+14919,stdout,received,'event text\xa0en @ 13200'
+15119,Stimulus,presented,22
+15120,stdout,received,'event text\xa0vallée @ 13600'
+15520,Stimulus,presented,23
+15521,stdout,received,'event text\xa0pieux @ 14000'
+15921,Stimulus,presented,24
+15922,stdout,received,'event text\xa0une @ 14400'
+16322,Stimulus,presented,20
+16323,stdout,received,'event blank\xa0blank @ 14800'
+16719,Stimulus,presented,0
+16720,stdout,received,'event sound\xa0dog_bark_x.wav @ 15000'
+16920,Stimulus,played,b'sounds/dog_bark_x.wav'
+16920,stdout,received,'event sound\xa0cow_mad_x.wav @ 17000'
+18920,Stimulus,played,b'sounds/cow_mad_x.wav'
+18920,Experiment,ended

@@ -1,0 +1,96 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:26:12
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+272,Picture,loaded,b'pictures/imag10.png'
+280,Picture,loaded,b'pictures/imag10.png'
+288,Picture,loaded,b'pictures/imag1.png'
+296,Picture,loaded,b'pictures/imag1.png'
+303,Picture,loaded,b'pictures/imag2.png'
+310,Picture,loaded,b'pictures/imag2.png'
+317,Picture,loaded,b'pictures/imag3.png'
+325,Picture,loaded,b'pictures/imag3.png'
+332,Picture,loaded,b'pictures/imag4.png'
+340,Picture,loaded,b'pictures/imag4.png'
+347,Picture,loaded,b'pictures/imag5.png'
+354,Picture,loaded,b'pictures/imag5.png'
+362,Picture,loaded,b'pictures/imag6.png'
+369,Picture,loaded,b'pictures/imag6.png'
+376,Picture,loaded,b'pictures/imag7.png'
+383,Picture,loaded,b'pictures/imag7.png'
+390,Picture,loaded,b'pictures/imag8.png'
+398,Picture,loaded,b'pictures/imag8.png'
+406,Picture,loaded,b'pictures/imag9.png'
+413,Picture,loaded,b'pictures/imag9.png'
+1021,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1021,design,logged,
+1021,Experiment,started
+1022,Stimulus,presented,1
+2125,Keyboard,received,b't',wait_char
+2126,Stimulus,presented,2
+2126,stdout,received,'event picture\xa0imag10.png @ 1900'
+4017,Stimulus,presented,10
+4018,stdout,received,'event blank\xa0blank @ 2900'
+5023,Stimulus,presented,0
+5025,stdout,received,'event sound\xa0bird.wav @ 3000'
+5124,Stimulus,played,b'sounds/bird.wav'
+5124,stdout,received,'event picture\xa0imag1.png @ 3400'
+5525,Stimulus,presented,11
+5526,stdout,received,'event blank\xa0blank @ 4400'
+6531,Stimulus,presented,0
+6532,stdout,received,'event picture\xa0imag2.png @ 4900'
+7022,Stimulus,presented,12
+7023,stdout,received,'event sound\xa0cat_y.wav @ 5000'
+7122,Stimulus,played,b'sounds/cat_y.wav'
+7123,stdout,received,'event blank\xa0blank @ 5900'
+8028,Stimulus,presented,0
+8029,stdout,received,'event picture\xa0imag3.png @ 6400'
+8519,Stimulus,presented,13
+8520,stdout,received,'event sound\xa0chicken.wav @ 7000'
+9119,Stimulus,played,b'sounds/chicken.wav'
+9120,stdout,received,'event blank\xa0blank @ 7400'
+9526,Stimulus,presented,0
+9527,stdout,received,'event sound\xa0phrases_pseudoM_set1_001.wav @ 7400'
+9527,Stimulus,played,b'speech/phrases_pseudoM_set1_001.wav'
+9527,stdout,received,'event picture\xa0imag4.png @ 7900'
+10017,Stimulus,presented,14
+10018,stdout,received,'event blank\xa0blank @ 8900'
+11023,Stimulus,presented,0
+11026,stdout,received,'event sound\xa0cow3.wav @ 9000'
+11125,Stimulus,played,b'sounds/cow3.wav'
+11126,stdout,received,'event picture\xa0imag5.png @ 9400'
+11526,Stimulus,presented,15
+11527,stdout,received,'event blank\xa0blank @ 10400'
+12522,Stimulus,presented,0
+12523,stdout,received,'event picture\xa0imag6.png @ 10900'
+13023,Stimulus,presented,16
+13024,stdout,received,'event blank\xa0blank @ 11900'
+14029,Stimulus,presented,0
+14030,stdout,received,'event picture\xa0imag7.png @ 12400'
+14520,Stimulus,presented,17
+14521,stdout,received,'event sound\xa0coyote_howl.wav @ 13000'
+15120,Stimulus,played,b'sounds/coyote_howl.wav'
+15120,stdout,received,'event blank\xa0blank @ 13400'
+15526,Stimulus,presented,0
+15527,stdout,received,'event picture\xa0imag8.png @ 13900'
+16017,Stimulus,presented,18
+16018,stdout,received,'event sound\xa0phrases_pseudoM_set1_002.wav @ 14400'
+16517,Stimulus,played,b'speech/phrases_pseudoM_set1_002.wav'
+16518,stdout,received,'event blank\xa0blank @ 14900'
+17023,Stimulus,presented,0
+17024,stdout,received,'event sound\xa0dog_bark_x.wav @ 15000'
+17123,Stimulus,played,b'sounds/dog_bark_x.wav'
+17123,stdout,received,'event picture\xa0imag9.png @ 15400'
+17524,Stimulus,presented,19
+17525,stdout,received,'event blank\xa0blank @ 16400'
+18530,Stimulus,presented,0
+18531,stdout,received,'event sound\xa0cow_mad_x.wav @ 17000'
+19120,Stimulus,played,b'sounds/cow_mad_x.wav'
+19120,stdout,received,'event sound\xa0phrases_pseudoM_set1_003.wav @ 21400'
+23520,Stimulus,played,b'speech/phrases_pseudoM_set1_003.wav'
+23520,Experiment,ended

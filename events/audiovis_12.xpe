@@ -1,0 +1,37 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 10:23:36
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+279,Picture,loaded,b'pictures/imag10.png'
+288,Picture,loaded,b'pictures/imag10.png'
+295,Picture,loaded,b'pictures/imag1.png'
+304,Picture,loaded,b'pictures/imag1.png'
+310,Picture,loaded,b'pictures/imag2.png'
+317,Picture,loaded,b'pictures/imag2.png'
+325,Picture,loaded,b'pictures/imag3.png'
+333,Picture,loaded,b'pictures/imag3.png'
+340,Picture,loaded,b'pictures/imag4.png'
+348,Picture,loaded,b'pictures/imag4.png'
+355,Picture,loaded,b'pictures/imag5.png'
+362,Picture,loaded,b'pictures/imag5.png'
+370,Picture,loaded,b'pictures/imag6.png'
+377,Picture,loaded,b'pictures/imag6.png'
+384,Picture,loaded,b'pictures/imag7.png'
+391,Picture,loaded,b'pictures/imag7.png'
+398,Picture,loaded,b'pictures/imag8.png'
+406,Picture,loaded,b'pictures/imag8.png'
+413,Picture,loaded,b'pictures/imag9.png'
+421,Picture,loaded,b'pictures/imag9.png'
+1205,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1205,design,logged,
+1205,Experiment,started
+1206,Stimulus,presented,1
+21813,Experiment,paused
+21815,Stimulus,presented,19
+22990,Keyboard,received,b'y',wait_char
+22990,Experiment,ended

@@ -1,0 +1,11 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:20:11
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+280,stderr,received,'Traceback (most recent call last):'
+280,stderr,received,'  File "audiovis.py", line 49, in <module>'
+280,stderr,received,'    onset, stype, f = int(row[0]), row[1], row[2]'
+280,stderr,received,"ValueError: invalid literal for int() with base 10: 'a de glace mur parti nous préfère apprendre la pâlit clair prétend'"

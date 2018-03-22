@@ -1,0 +1,11 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:18:16
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+275,stderr,received,'Traceback (most recent call last):'
+275,stderr,received,'  File "audiovis.py", line 70, in <module>'
+275,stderr,received,"    events.put((onset, 'text', t, maptext[w]))"
+275,stderr,received,"NameError: name 't' is not defined"

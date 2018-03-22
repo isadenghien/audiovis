@@ -1,0 +1,40 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Wed Mar 21 2018 14:33:33
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+111,Picture,loaded,b'images/imag2.png'
+118,Picture,loaded,b'images/imag2.png'
+126,Picture,loaded,b'images/imag8.png'
+133,Picture,loaded,b'images/imag8.png'
+142,Picture,loaded,b'images/imag10.png'
+150,Picture,loaded,b'images/imag10.png'
+158,Picture,loaded,b'images/imag9.png'
+166,Picture,loaded,b'images/imag9.png'
+174,Picture,loaded,b'images/imag7.png'
+180,Picture,loaded,b'images/imag7.png'
+188,Picture,loaded,b'images/imag6.png'
+195,Picture,loaded,b'images/imag6.png'
+203,Picture,loaded,b'images/imag1.png'
+213,Picture,loaded,b'images/imag1.png'
+222,Picture,loaded,b'images/imag3.png'
+230,Picture,loaded,b'images/imag3.png'
+238,Picture,loaded,b'images/imag5.png'
+246,Picture,loaded,b'images/imag5.png'
+253,Picture,loaded,b'images/imag4.png'
+260,Picture,loaded,b'images/imag4.png'
+1216,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+1217,design,logged,
+1217,Experiment,started
+1257,Stimulus,presented,22
+1463,Stimulus,presented,30
+2214,Stimulus,played,b'sounds/phrases_set1_009.wav'
+4214,Stimulus,presented,14
+4420,Stimulus,presented,30
+6211,Stimulus,presented,21
+6417,Stimulus,presented,30
+11218,Experiment,ended

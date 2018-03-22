@@ -1,0 +1,13 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpd-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:30:15
+#--EXPERIMENT INFO
+#e mainfile: audiovis.py
+#e sha1: None
+#e modules: 
+#e Experiment: First Experiment
+#e no between subject factors
+#--SUBJECT INFO
+#s id: 27
+subject_id,
+27,4000,102
+27,7998,103

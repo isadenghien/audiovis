@@ -1,0 +1,104 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:21:29
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+918,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+918,design,logged,
+919,Experiment,started
+920,Stimulus,presented,1
+2199,Keyboard,received,b't',wait_char
+2200,Stimulus,presented,2
+4191,Stimulus,presented,13
+4192,Stimulus,presented,7
+4197,Stimulus,presented,12
+4214,Stimulus,presented,9
+4214,stdout,received,'Delayed event 2000\xa0text elle <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a005f8> @ 2014'
+4230,Stimulus,presented,11
+4231,stdout,received,'Delayed event 2000\xa0text grande <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a005c0> @ 2030'
+4247,Stimulus,presented,10
+4248,stdout,received,'Delayed event 2000\xa0text il <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00f60> @ 2047'
+4264,Stimulus,presented,5
+4264,stdout,received,'Delayed event 2000\xa0text le <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00978> @ 2063'
+4280,Stimulus,presented,14
+4281,stdout,received,'Delayed event 2000\xa0text les <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00748> @ 2080'
+4297,Stimulus,presented,4
+4299,stdout,received,'Delayed event 2000\xa0text pièces <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00c18> @ 2097'
+4314,Stimulus,presented,8
+4314,stdout,received,'Delayed event 2000\xa0text sort <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00cf8> @ 2114'
+4331,Stimulus,presented,3
+4331,stdout,received,'Delayed event 2000\xa0text émettant <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00b00> @ 2130'
+4348,Stimulus,presented,6
+4504,Stimulus,presented,0
+4505,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2304'
+4510,Stimulus,presented,0
+4511,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2310'
+4519,Stimulus,presented,0
+4520,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2319'
+4536,Stimulus,presented,0
+4537,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2336'
+4553,Stimulus,presented,0
+4554,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2353'
+4570,Stimulus,presented,0
+4571,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2370'
+4586,Stimulus,presented,0
+4587,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2386'
+4603,Stimulus,presented,0
+4604,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2403'
+4619,Stimulus,presented,0
+4620,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2419'
+4636,Stimulus,presented,0
+4636,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2435'
+4653,Stimulus,presented,0
+4653,stdout,received,'Delayed event 2300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 2452'
+4669,Stimulus,presented,0
+12200,Stimulus,presented,18
+12202,stdout,received,'Delayed event 10000\xa0text de <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00b70> @ 10001'
+12202,Stimulus,presented,15
+12203,stdout,received,'Delayed event 10000\xa0text demain <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00828> @ 10002'
+12203,Stimulus,presented,16
+12204,stdout,received,'Delayed event 10000\xa0text en <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00240> @ 10003'
+12220,Stimulus,presented,22
+12221,stdout,received,'Delayed event 10000\xa0text fleuve <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00710> @ 10020'
+12238,Stimulus,presented,19
+12238,stdout,received,'Delayed event 10000\xa0text les <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00748> @ 10037'
+12254,Stimulus,presented,4
+12255,stdout,received,'Delayed event 10000\xa0text locataire <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a001d0> @ 10054'
+12270,Stimulus,presented,21
+12271,stdout,received,'Delayed event 10000\xa0text patient <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00550> @ 10070'
+12287,Stimulus,presented,17
+12288,stdout,received,'Delayed event 10000\xa0text pieux <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00e48> @ 10087'
+12304,Stimulus,presented,24
+12305,stdout,received,'Delayed event 10000\xa0text une <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00128> @ 10104'
+12321,Stimulus,presented,20
+12322,stdout,received,'Delayed event 10000\xa0text une <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a00128> @ 10121'
+12337,Stimulus,presented,20
+12338,stdout,received,'Delayed event 10000\xa0text vallée <expyriment.stimuli._textline.TextLine object at 0x7fa6c2a002b0> @ 10137'
+12354,Stimulus,presented,23
+12500,Stimulus,presented,0
+12508,Stimulus,presented,0
+12509,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10308'
+12515,Stimulus,presented,0
+12516,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10315'
+12526,Stimulus,presented,0
+12527,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10326'
+12544,Stimulus,presented,0
+12544,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10343'
+12559,Stimulus,presented,0
+12560,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10359'
+12576,Stimulus,presented,0
+12577,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10376'
+12593,Stimulus,presented,0
+12594,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10393'
+12610,Stimulus,presented,0
+12610,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10409'
+12627,Stimulus,presented,0
+12627,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10426'
+12645,Stimulus,presented,0
+12646,stdout,received,'Delayed event 10300\xa0blank blank <expyriment.stimuli._blankscreen.BlankScreen object at 0x7fa6d56e79e8> @ 10445'
+12661,Stimulus,presented,0
+12662,Experiment,ended

@@ -1,0 +1,36 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Wed Mar 21 2018 14:41:03
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+123,Picture,loaded,b'images/imag2.png'
+130,Picture,loaded,b'images/imag2.png'
+138,Picture,loaded,b'images/imag8.png'
+145,Picture,loaded,b'images/imag8.png'
+154,Picture,loaded,b'images/imag10.png'
+162,Picture,loaded,b'images/imag10.png'
+171,Picture,loaded,b'images/imag9.png'
+178,Picture,loaded,b'images/imag9.png'
+186,Picture,loaded,b'images/imag7.png'
+193,Picture,loaded,b'images/imag7.png'
+200,Picture,loaded,b'images/imag6.png'
+208,Picture,loaded,b'images/imag6.png'
+215,Picture,loaded,b'images/imag1.png'
+224,Picture,loaded,b'images/imag1.png'
+232,Picture,loaded,b'images/imag3.png'
+241,Picture,loaded,b'images/imag3.png'
+249,Picture,loaded,b'images/imag5.png'
+256,Picture,loaded,b'images/imag5.png'
+263,Picture,loaded,b'images/imag4.png'
+270,Picture,loaded,b'images/imag4.png'
+2703,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+2703,design,logged,
+2703,Experiment,started
+2703,stderr,received,'Traceback (most recent call last):'
+2703,stderr,received,'  File "audiovis.py", line 57, in <module>'
+2703,stderr,received,'    kb = experiment.io.Keyboard()'
+2703,stderr,received,"NameError: name 'experiment' is not defined"

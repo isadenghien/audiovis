@@ -1,0 +1,27 @@
+#Expyriment 0.9.0 (Python 3.6.3), .xpe-file, coding: UTF-8
+#date: Thu Mar 22 2018 11:30:15
+#sha1: None
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Linux', node='is153352', release='4.9.8-040908-generic', version='#201702040431 SMP Sat Feb 4 09:32:59 UTC 2017', machine='x86_64', processor='x86_64')
+Time,Type,Event,Value,Detail,Detail2
+2756,design,log,
+#design: #exp: First Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+2756,design,logged,
+2756,Experiment,started
+2758,Stimulus,presented,1
+4019,Keyboard,received,b't',wait_char
+4020,Stimulus,presented,2
+4021,stdout,received,'event text\xa0sort les il émettant ancien pièces des grande elle comptable ami le @ 1000'
+5011,Stimulus,presented,3
+5012,stdout,received,'event blank\xa0blank @ 4000'
+8018,Stimulus,presented,0
+8021,stdout,received,'keypressed: 102 @\xa03999'
+8021,stdout,received,'event text\xa0de demain patient les anglais fleuve une locataire en vallée pieux une @ 5000'
+9011,Stimulus,presented,4
+9012,stdout,received,'event blank\xa0blank @ 8000'
+12018,Stimulus,presented,0
+12020,stdout,received,'keypressed: 103 @\xa07998'
+12020,Experiment,ended
+12020,Data,saved
