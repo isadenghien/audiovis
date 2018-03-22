@@ -2,7 +2,8 @@
 general audio visual stimulus presentation with expyriment
 
 
-audiovis.py plays audio or visual stimuli listed in csv files
+audiovis.py plays audio or visual stimuli listed in csv files passed as command line arguments (several csv files can be listed: they will simply be merged)
+
 
 Each csv file must contain 3 columns:
 

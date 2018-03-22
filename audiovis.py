@@ -19,9 +19,9 @@ PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
 #TOTAL_EXPE_DURATION = 20000 # 10 sec
 
-exp = expyriment.design.Experiment(name="First Experiment")
+exp = expyriment.design.Experiment(name="HiRes Experiment")
 #expyriment.control.defaults.open_gl=1
-
+expyriment.control.defaults.window_size=(1280, 1028)
 expyriment.control.set_develop_mode(True)
 
 #%
@@ -42,6 +42,7 @@ mapsounds = dict()
 mapspeech = dict()
 maptext = dict()
 mappictures = dict()
+mapvideos = dict()
 
 for listfile in sys.argv[1:]:
     stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8'))
@@ -59,6 +60,11 @@ for listfile in sys.argv[1:]:
                 mappictures[f].preload()
             events.put((onset, 'picture', f, mappictures[f]))
             events.put((onset + PICTURE_DURATION, 'blank', 'blank', bs))
+        elif stype == 'video':
+            if not f in mapvideos:
+                mapvideos[f] = stimuli.Video(op.join(bp, f))
+                mapvideos[f].preload()
+            event.put((onset, 'video', f, mapvideos[f]))
         elif stype == 'text':
             if not f in maptext:
                 maptext[f] = stimuli.TextLine(f)
