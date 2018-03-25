@@ -5,6 +5,7 @@
 import sys
 import io
 import os.path as op
+import argparse
 import csv
 
 import expyriment.control
@@ -17,7 +18,36 @@ from queue import PriorityQueue
 WORD_DURATION = 400
 PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
-#TOTAL_EXPE_DURATION = 20000 # 10 sec
+TOTAL_EXPE_DURATION = 20000 # 10 sec
+
+
+# process command line options
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--splash", help="displays a picture (e.g. containing instructions) before starting the experiment")
+
+parser.add_argument("--rsvp-display-time",
+                    type=int,
+                    default=WORD_DURATION,
+                    help="set the duration of display of single words \
+                          in rsvp stimuli")
+parser.add_argument("--picture-display-time",
+                    type=int,
+                    default=PICTURE_DURATION,
+                    help="set the duration of display of pictures")
+parser.add_argument("--text-display-time",
+                    type=int,
+                    default=TEXT_DURATION,
+                    help="set the duration of display of pictures")
+parser.add_argument('csv_files', nargs='+', action="append", default=[])
+
+args = parser.parse_args()
+splash_screen = args.splash
+WORD_DURATION = args.rsvp_display_time
+PICTURE_DURATION = args.picture_display_time
+TEXT_DURATION = args.text_display_time
+csv_files = args.csv_files[0]
+
 
 exp = expyriment.design.Experiment(name="HiRes Experiment")
 #expyriment.control.defaults.open_gl=1
@@ -44,7 +74,7 @@ maptext = dict()
 mappictures = dict()
 mapvideos = dict()
 
-for listfile in sys.argv[1:]:
+for listfile in csv_files:
     stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8'))
     bp = op.dirname(listfile)
     for row in stimlist:
@@ -84,6 +114,11 @@ for listfile in sys.argv[1:]:
 
 expyriment.control.start()
 
+
+if not (splash_screen is None):
+    splashs = stimuli.Picture(splash_screen)
+    splashs.present()
+    kb.wait_char(' ')
 
 wm.present()  
 kb.wait_char('t')  # wait for scanner TTL 

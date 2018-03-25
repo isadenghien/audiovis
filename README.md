@@ -20,6 +20,15 @@ and
 python audiovis.py  rsvp/list1.csv sounds/list1.csv
 
 
+and 
+
+python audiovis.py -h   for help
+
+it is possible to display a picture (for example containing instructions) after 'Ready' and before 'wait TTL' with the option --splash. Try:
+
+python audiovis.py --splash instructions.png rsvp/list1.csv sounds/list1.csv
+
+
 
 Note: Press the space bar when the message' Ready' appears.
 
