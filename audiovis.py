@@ -19,6 +19,10 @@ WORD_DURATION = 400
 PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
 TOTAL_EXPE_DURATION = 20000 # 10 sec
+BACKGROUND_COLOR=(127, 127, 127)
+TEXT_FONT = None
+TEXT_SIZE = 48
+TEXT_COLOR = (0, 0, 0)
 
 
 # process command line options
@@ -26,6 +30,10 @@ TOTAL_EXPE_DURATION = 20000 # 10 sec
 parser = argparse.ArgumentParser()
 parser.add_argument("--splash", help="displays a picture (e.g. containing instructions) before starting the experiment")
 
+parser.add_argument('csv_files',
+                    nargs='+',
+                    action="append",
+                    default=[])
 parser.add_argument("--rsvp-display-time",
                     type=int,
                     default=WORD_DURATION,
@@ -39,13 +47,36 @@ parser.add_argument("--text-display-time",
                     type=int,
                     default=TEXT_DURATION,
                     help="set the duration of display of pictures")
-parser.add_argument('csv_files', nargs='+', action="append", default=[])
+parser.add_argument("--text-font",
+                    type=str,
+                    default=TEXT_FONT,
+                    help="set the font for text stimuli")
+parser.add_argument("--text-size",
+                    type=int,
+                    default=TEXT_SIZE,
+                    help="set the vertical size of text stimuli")
+parser.add_argument("--text-color",
+                    nargs='+',
+                    type=int,
+                    default=TEXT_COLOR,
+                    help="set the font for text stimuli")
+parser.add_argument("--background-color",
+                    nargs='+',
+                    type=int,
+                    default=BACKGROUND_COLOR,
+                    help="set the background color")
+
 
 args = parser.parse_args()
 splash_screen = args.splash
 WORD_DURATION = args.rsvp_display_time
 PICTURE_DURATION = args.picture_display_time
 TEXT_DURATION = args.text_display_time
+TEXT_SIZE = args.text_size
+TEXT_COLOR = tuple(args.text_color)
+TEXT_FONT = args.text_font
+BACKGROUND_COLOR = tuple(args.background_color)
+
 csv_files = args.csv_files[0]
 
 
@@ -54,13 +85,21 @@ exp = expyriment.design.Experiment(name="HiRes Experiment")
 expyriment.control.defaults.window_size=(1280, 1028)
 expyriment.control.set_develop_mode(True)
 
+expyriment.misc.add_fonts('fonts')
+
 #%
 
 expyriment.control.initialize(exp)
 
+#exp.background_colour = BACKGROUND_COLOR
+exp._screen_colour = BACKGROUND_COLOR
 kb = expyriment.io.Keyboard()
-bs = stimuli.BlankScreen()
-wm = stimuli.TextLine('Waiting for scanner sync (or press \'t\')')
+bs = stimuli.BlankScreen(colour=BACKGROUND_COLOR)
+wm = stimuli.TextLine('Waiting for scanner sync (or press \'t\')',
+                      text_font=TEXT_FONT,
+                      text_size=TEXT_SIZE,
+                      text_colour=TEXT_COLOR,
+                      background_colour=BACKGROUND_COLOR)
 fs = stimuli.FixCross()
 
 events = PriorityQueue()  # all stimuli will be queued here
@@ -97,14 +136,22 @@ for listfile in csv_files:
             event.put((onset, 'video', f, mapvideos[f]))
         elif stype == 'text':
             if not f in maptext:
-                maptext[f] = stimuli.TextLine(f)
+                maptext[f] = stimuli.TextLine(f,
+                                              text_font=TEXT_FONT,
+                                              text_size=TEXT_SIZE,
+                                              text_colour=TEXT_COLOR,
+                                              background_colour=BACKGROUND_COLOR)
                 maptext[f].preload()
             events.put((onset, 'text', f, maptext[f]))
             events.put((onset + TEXT_DURATION, 'blank', 'blank', bs))
         elif stype == 'rsvp':
             for i, w in enumerate(f.split()):
                 if not w in maptext:
-                    maptext[w] = stimuli.TextLine(w)
+                    maptext[w] = stimuli.TextLine(w,
+                                                  text_font=TEXT_FONT,
+                                                  text_size=TEXT_SIZE,
+                                                  text_colour=TEXT_COLOR,
+                                                  background_colour=BACKGROUND_COLOR)
                     maptext[w].preload()
                 events.put((onset + i * WORD_DURATION, 'text', w, maptext[w]))
             events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', bs))
@@ -120,7 +167,8 @@ if not (splash_screen is None):
     splashs.present()
     kb.wait_char(' ')
 
-wm.present()  
+wm.present()
+bs.present()
 kb.wait_char('t')  # wait for scanner TTL 
 fs.present()  # clear screen, presenting fixation cross
 
