@@ -23,6 +23,7 @@ BACKGROUND_COLOR=(127, 127, 127)
 TEXT_FONT = None
 TEXT_SIZE = 48
 TEXT_COLOR = (0, 0, 0)
+WINDOW_SIZE = (1280, 1028)
 
 
 # process command line options
@@ -65,6 +66,11 @@ parser.add_argument("--background-color",
                     type=int,
                     default=BACKGROUND_COLOR,
                     help="set the background color")
+parser.add_argument("--window-size",
+                    nargs='+',
+                    type=int,
+                    default=WINDOW_SIZE,
+                    help="in window mode, sets the window size")
 
 
 args = parser.parse_args()
@@ -76,14 +82,15 @@ TEXT_SIZE = args.text_size
 TEXT_COLOR = tuple(args.text_color)
 TEXT_FONT = args.text_font
 BACKGROUND_COLOR = tuple(args.background_color)
+WINDOW_SIZE = tuple(args.window_size)
 
 csv_files = args.csv_files[0]
 
+expyriment.control.defaults.window_size = WINDOW_SIZE
+expyriment.design.defaults.experiment_background_colour = BACKGROUND_COLOR
 
 exp = expyriment.design.Experiment(name="HiRes Experiment")
 #expyriment.control.defaults.open_gl=1
-expyriment.control.defaults.window_size=(1280, 1028)
-expyriment.control.set_develop_mode(True)
 
 expyriment.misc.add_fonts('fonts')
 
@@ -168,7 +175,6 @@ if not (splash_screen is None):
     kb.wait_char(' ')
 
 wm.present()
-bs.present()
 kb.wait_char('t')  # wait for scanner TTL 
 fs.present()  # clear screen, presenting fixation cross
 
