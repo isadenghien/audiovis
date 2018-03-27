@@ -30,7 +30,7 @@ python audiovis.py --splash instructions.png rsvp/list1.csv sounds/list1.csv
 
 and change the font, or the background color (not working well still)
 
-python audiovis.py --splash instructions.png --text-font TITUSCBZ.TTF --background-color 127 127 127 -- rsvp/list1.csv sounds/list1.csv
+python audiovis.py --splash instructions.jpg --text-font TITUSCBZ.TTF --background-color 127 127 127 -- rsvp/list1.csv sounds/list1.csv
 
 
 
