@@ -14,11 +14,11 @@ from expyriment.misc import Clock
 
 from queue import PriorityQueue
 
-# constants (to be modified depending on the paradigm) 
+# constants (which can be modified by optional command line arguments) 
 WORD_DURATION = 400
 PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
-TOTAL_EXPE_DURATION = 20000 # 10 sec
+TOTAL_EXPE_DURATION = None # time in millisec
 BACKGROUND_COLOR=(127, 127, 127)
 TEXT_FONT = None
 TEXT_SIZE = 48
@@ -86,10 +86,15 @@ WINDOW_SIZE = tuple(args.window_size)
 
 csv_files = args.csv_files[0]
 
+expyriment.control.defaults.window_mode=True
 expyriment.control.defaults.window_size = WINDOW_SIZE
 expyriment.design.defaults.experiment_background_colour = BACKGROUND_COLOR
 
-exp = expyriment.design.Experiment(name="HiRes Experiment")
+exp = expyriment.design.Experiment(name="HiRes Experiment",
+                                   background_colour=BACKGROUND_COLOR,
+                                   foreground_colour=TEXT_COLOR,
+                                   text_size=TEXT_SIZE,
+                                   text_font=TEXT_FONT)
 #expyriment.control.defaults.open_gl=1
 
 expyriment.misc.add_fonts('fonts')
@@ -182,39 +187,22 @@ a = Clock()
 
 while not(events.empty()):
     onset, stype, id, stim = events.get()
-    print('event {} {} @ {}'.format(stype, id, onset))
-    if a.time > onset:
-        print('...delayed @ {}'.format(a.time))  # TODO
+#    print('event {} {} @ {}'.format(stype, id, onset))
+#    if a.time > onset:
+#        print('...delayed @ {}'.format(a.time))  # TODO
     while a.time < (onset - 10):
         a.wait(10)
         k = kb.check()
         if k is not None:
-            print('keypressed: {} @ {}'.format(k, a.time))
+            print('keypressed,{},{}'.format(k, a.time))
             exp.data.add([a.time, k])
 
     stim.present()
+    exp.data.add([a.time, '{},{},{}'.format(stype, id, onset)])
 
     k = kb.check()
     if k is not None:
-        print('keypressed: {} @ {}'.format(k, a.time))
+        print('keypressed,{},{}'.format(k, a.time))
         exp.data.add([a.time, k])
-
-    try:
-        TOTAL_EXPE_DURATION
-    except NameError:
-        None
-    else:
-        if a.time > TOTAL_EXPE_DURATION:
-            expyriment.control.stop_audiosystem()
-            break
-
-
-try:
-    TOTAL_EXPE_DURATION
-except NameError:
-    None
-else:
-    while a.time < TOTAL_EXPE_DURATION:
-        a.wait(100)
 
 expyriment.control.end('Merci !', 2000)
