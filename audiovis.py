@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2018-03-21 14:34:02 cp983411>
+# Time-stamp: <2018-03-28 16:31:03 cp983411>
 
 
 import sys
@@ -20,7 +20,7 @@ PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
 TOTAL_EXPE_DURATION = None # time in millisec
 BACKGROUND_COLOR=(127, 127, 127)
-TEXT_FONT = None
+TEXT_FONT = 'TITUSCBZ.TTF'
 TEXT_SIZE = 48
 TEXT_COLOR = (0, 0, 0)
 WINDOW_SIZE = (1280, 1028)
@@ -112,7 +112,7 @@ wm = stimuli.TextLine('Waiting for scanner sync (or press \'t\')',
                       text_size=TEXT_SIZE,
                       text_colour=TEXT_COLOR,
                       background_colour=BACKGROUND_COLOR)
-fs = stimuli.FixCross()
+fs = stimuli.FixCross(size=(25, 25), line_width=3, colour=TEXT_COLOR)
 
 events = PriorityQueue()  # all stimuli will be queued here
 
@@ -126,10 +126,10 @@ mappictures = dict()
 mapvideos = dict()
 
 for listfile in csv_files:
-    stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8'))
+    stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'))
     bp = op.dirname(listfile)
     for row in stimlist:
-        onset, stype, f = int(row[0]), row[1], row[2]
+        onset, stype, cond, pm, f = int(row[0]), row[1], row[2], row[3], row[4]
         if stype == 'sound':
             if not f in mapsounds:
                 mapsounds[f] = stimuli.Audio(op.join(bp, f))
@@ -155,7 +155,7 @@ for listfile in csv_files:
                                               background_colour=BACKGROUND_COLOR)
                 maptext[f].preload()
             events.put((onset, 'text', f, maptext[f]))
-            events.put((onset + TEXT_DURATION, 'blank', 'blank', bs))
+            events.put((onset + TEXT_DURATION, 'blank', 'blank', fs))
         elif stype == 'rsvp':
             for i, w in enumerate(f.split()):
                 if not w in maptext:
@@ -166,7 +166,7 @@ for listfile in csv_files:
                                                   background_colour=BACKGROUND_COLOR)
                     maptext[w].preload()
                 events.put((onset + i * WORD_DURATION, 'text', w, maptext[w]))
-            events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', bs))
+            events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', fs))
 
 
 #%
@@ -191,18 +191,16 @@ while not(events.empty()):
 #    if a.time > onset:
 #        print('...delayed @ {}'.format(a.time))  # TODO
     while a.time < (onset - 10):
-        a.wait(10)
+        a.wait(1)
         k = kb.check()
         if k is not None:
-            print('keypressed,{},{}'.format(k, a.time))
-            exp.data.add([a.time, k])
+            exp.data.add([a.time, 'keypressed,{}'.format(k)])
 
     stim.present()
     exp.data.add([a.time, '{},{},{}'.format(stype, id, onset)])
 
     k = kb.check()
     if k is not None:
-        print('keypressed,{},{}'.format(k, a.time))
-        exp.data.add([a.time, k])
+        exp.data.add([a.time, 'keypressed,{}'.format(k)])
 
 expyriment.control.end('Merci !', 2000)
