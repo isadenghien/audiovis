@@ -14,16 +14,17 @@ from expyriment.misc import Clock
 
 from queue import PriorityQueue
 
-# constants (which can be modified by optional command line arguments) 
-WORD_DURATION = 400
+# constants (which can be modified by optional command line arguments)
+WORD_DURATION = 450
 PICTURE_DURATION = 1000
 TEXT_DURATION = 3000
-TOTAL_EXPE_DURATION = None # time in millisec
-BACKGROUND_COLOR=(127, 127, 127)
+TOTAL_EXPE_DURATION = 415000 # time in millisec
+BACKGROUND_COLOR=(240, 240, 240)
 TEXT_FONT = 'TITUSCBZ.TTF'
 TEXT_SIZE = 48
 TEXT_COLOR = (0, 0, 0)
-WINDOW_SIZE = (1280, 1028)
+WINDOW_SIZE = (1220, 700)
+#WINDOW_SIZE = (1280, 1028)
 
 
 # process command line options
@@ -35,6 +36,10 @@ parser.add_argument('csv_files',
                     nargs='+',
                     action="append",
                     default=[])
+parser.add_argument('--total-duration',
+                    type=int,
+                    default=-1,
+                    help="time to wait for after the end of the stimuli stream")
 parser.add_argument("--rsvp-display-time",
                     type=int,
                     default=WORD_DURATION,
@@ -83,6 +88,7 @@ TEXT_COLOR = tuple(args.text_color)
 TEXT_FONT = args.text_font
 BACKGROUND_COLOR = tuple(args.background_color)
 WINDOW_SIZE = tuple(args.window_size)
+TOTAL_EXPE_DURATION = args.total_duration
 
 csv_files = args.csv_files[0]
 
@@ -134,18 +140,18 @@ for listfile in csv_files:
             if not f in mapsounds:
                 mapsounds[f] = stimuli.Audio(op.join(bp, f))
                 mapsounds[f].preload()
-            events.put((onset, 'sound', f, mapsounds[f]))
+            events.put((onset, 'sound', f, mapsounds[f], cond, pm))
         elif stype == 'picture':
             if not f in mappictures:
                 mappictures[f] = stimuli.Picture(op.join(bp, f))
                 mappictures[f].preload()
-            events.put((onset, 'picture', f, mappictures[f]))
-            events.put((onset + PICTURE_DURATION, 'blank', 'blank', bs))
+            events.put((onset, 'picture', f, mappictures[f], cond, pm))
+            events.put((onset + PICTURE_DURATION, 'blank', 'blank', bs, '', ''))
         elif stype == 'video':
             if not f in mapvideos:
                 mapvideos[f] = stimuli.Video(op.join(bp, f))
                 mapvideos[f].preload()
-            event.put((onset, 'video', f, mapvideos[f]))
+            event.put((onset, 'video', f, mapvideos[f], cond, pm))
         elif stype == 'text':
             if not f in maptext:
                 maptext[f] = stimuli.TextLine(f,
@@ -154,8 +160,8 @@ for listfile in csv_files:
                                               text_colour=TEXT_COLOR,
                                               background_colour=BACKGROUND_COLOR)
                 maptext[f].preload()
-            events.put((onset, 'text', f, maptext[f]))
-            events.put((onset + TEXT_DURATION, 'blank', 'blank', fs))
+            events.put((onset, 'text', f, maptext[f], cond, pm))
+            events.put((onset + TEXT_DURATION, 'blank', 'blank', fs, '', ''))
         elif stype == 'rsvp':
             for i, w in enumerate(f.split()):
                 if not w in maptext:
@@ -165,12 +171,12 @@ for listfile in csv_files:
                                                   text_colour=TEXT_COLOR,
                                                   background_colour=BACKGROUND_COLOR)
                     maptext[w].preload()
-                events.put((onset + i * WORD_DURATION, 'text', w, maptext[w]))
-            events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', fs))
+                events.put((onset + i * WORD_DURATION, 'text', w, maptext[w], cond+str(i), pm))
+            events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', fs, '', ''))
 
+exp.add_data_variable_names(['time', 'cond', 'pm', 'stype', 'id', 'target_time'])
 
 #%
-
 expyriment.control.start()
 
 
@@ -180,16 +186,13 @@ if not (splash_screen is None):
     kb.wait_char(' ')
 
 wm.present()
-kb.wait_char('t')  # wait for scanner TTL 
+kb.wait_char('t')  # wait for scanner TTL
 fs.present()  # clear screen, presenting fixation cross
 
 a = Clock()
 
 while not(events.empty()):
-    onset, stype, id, stim = events.get()
-#    print('event {} {} @ {}'.format(stype, id, onset))
-#    if a.time > onset:
-#        print('...delayed @ {}'.format(a.time))  # TODO
+    onset, stype, id, stim, cond, pm = events.get()
     while a.time < (onset - 10):
         a.wait(1)
         k = kb.check()
@@ -197,10 +200,17 @@ while not(events.empty()):
             exp.data.add([a.time, 'keypressed,{}'.format(k)])
 
     stim.present()
-    exp.data.add([a.time, '{},{},{}'.format(stype, id, onset)])
+    exp.data.add([a.time, '{},{},{},{},{}'.format(cond, pm, stype, id, onset)])
 
     k = kb.check()
     if k is not None:
         exp.data.add([a.time, 'keypressed,{}'.format(k)])
+
+
+fs.present()
+
+if TOTAL_EXPE_DURATION != -1:
+    while a.time < TOTAL_EXPE_DURATION:
+        a.wait(10)
 
 expyriment.control.end('Merci !', 2000)
