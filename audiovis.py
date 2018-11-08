@@ -15,7 +15,9 @@ from queue import PriorityQueue
 
 # constants (which can be modified by optional command line arguments)
 WORD_DURATION = 450
+WORD_ISI = 200
 PICTURE_DURATION = 1000
+PICTURE_ISI = 0
 TEXT_DURATION = 3000
 TOTAL_EXPE_DURATION = -1 # time in millisec
 BACKGROUND_COLOR=(240, 240, 240)
@@ -44,14 +46,23 @@ parser.add_argument("--rsvp-display-time",
                     default=WORD_DURATION,
                     help="set the duration of display of single words \
                           in rsvp stimuli")
+parser.add_argument("--rsvp-display-isi",
+                    type=int,
+                    default=WORD_ISI,
+                    help="set the duration of display of single words \
+                          in rsvp stimuli")
 parser.add_argument("--picture-display-time",
                     type=int,
                     default=PICTURE_DURATION,
                     help="set the duration of display of pictures")
+parser.add_argument("--picture-isi",
+                    type=int,
+                    default=PICTURE_ISI,
+                    help="set the ISI between pictures in  pictseq sequence")
 parser.add_argument("--text-display-time",
                     type=int,
                     default=TEXT_DURATION,
-                    help="set the duration of display of pictures")
+                    help="set the duration of display of text")
 parser.add_argument("--text-font",
                     type=str,
                     default=TEXT_FONT,
@@ -81,6 +92,7 @@ args = parser.parse_args()
 splash_screen = args.splash
 WORD_DURATION = args.rsvp_display_time
 PICTURE_DURATION = args.picture_display_time
+PICTURE_ISI = args.picture_isi
 TEXT_DURATION = args.text_display_time
 TEXT_SIZE = args.text_size
 TEXT_COLOR = tuple(args.text_color)
@@ -88,6 +100,7 @@ TEXT_FONT = args.text_font
 BACKGROUND_COLOR = tuple(args.background_color)
 WINDOW_SIZE = tuple(args.window_size)
 TOTAL_EXPE_DURATION = args.total_duration
+WORD_ISI = args.rsvp_display_isi
 
 csv_files = args.csv_files[0]
 
@@ -170,8 +183,22 @@ for listfile in csv_files:
                                                   text_colour=TEXT_COLOR,
                                                   background_colour=BACKGROUND_COLOR)
                     maptext[w].preload()
-                events.put((onset + i * WORD_DURATION, 'text', w, maptext[w]))
-            events.put((onset + (i + 1) * WORD_DURATION, 'blank', 'blank', fs))
+                events.put((onset + i * (WORD_DURATION + WORD_ISI), 'text', w, maptext[w]))
+                if not (WORD_ISI == 0):
+                    events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, 'blank', 'blank', bs))
+            if WORD_ISI == 0:
+                events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, 'blank', 'blank', bs))
+        elif stype == 'pictseq':
+            for i, p in enumerate(f.split()):
+                if not p in mappictures:
+                    mappictures[p] = stimuli.Picture(op.join(bp, p))
+                    mappictures[p].preload()
+                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI), 'picture', p, mappictures[p]))
+                if not (PICTURE_ISI == 0):
+                    events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, 'blank', 'blank', bs))
+            if PICTURE_ISI == 0:  # then erase the last picture
+                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, 'blank', 'blank', bs))
+
 
 exp.add_data_variable_names(['time', 'stype', 'id', 'target_time'])
 
