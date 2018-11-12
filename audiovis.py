@@ -147,23 +147,23 @@ for listfile in csv_files:
     stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'))
     bp = op.dirname(listfile)
     for row in stimlist:
-        onset, stype, f = int(row[0]), row[1], row[2]
+        cond, onset, stype, f = row[0], int(row[1]), row[2], row[3]
         if stype == 'sound':
             if not f in mapsounds:
                 mapsounds[f] = stimuli.Audio(op.join(bp, f))
                 mapsounds[f].preload()
-            events.put((onset, 'sound', f, mapsounds[f]))
+            events.put((onset, cond, 'sound', f, mapsounds[f]))
         elif stype == 'picture':
             if not f in mappictures:
                 mappictures[f] = stimuli.Picture(op.join(bp, f))
                 mappictures[f].preload()
-            events.put((onset, 'picture', f, mappictures[f]))
-            events.put((onset + PICTURE_DURATION, 'blank', 'blank', bs))
+            events.put((onset, cond, 'picture', f, mappictures[f]))
+            events.put((onset + PICTURE_DURATION, cond, 'blank', 'blank', bs))
         elif stype == 'video':
             if not f in mapvideos:
                 mapvideos[f] = stimuli.Video(op.join(bp, f))
                 mapvideos[f].preload()
-            event.put((onset, 'video', f, mapvideos[f]))
+            event.put((onset, cond, 'video', f, mapvideos[f]))
         elif stype == 'text':
             if not f in maptext:
                 maptext[f] = stimuli.TextLine(f,
@@ -172,8 +172,8 @@ for listfile in csv_files:
                                               text_colour=TEXT_COLOR,
                                               background_colour=BACKGROUND_COLOR)
                 maptext[f].preload()
-            events.put((onset, 'text', f, maptext[f]))
-            events.put((onset + TEXT_DURATION, 'blank', 'blank', fs))
+            events.put((onset, cond, 'text', f, maptext[f]))
+            events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
         elif stype == 'rsvp':
             for i, w in enumerate(f.split()):
                 if not w in maptext:
@@ -183,24 +183,24 @@ for listfile in csv_files:
                                                   text_colour=TEXT_COLOR,
                                                   background_colour=BACKGROUND_COLOR)
                     maptext[w].preload()
-                events.put((onset + i * (WORD_DURATION + WORD_ISI), 'text', w, maptext[w]))
+                events.put((onset + i * (WORD_DURATION + WORD_ISI), cond, 'text', w, maptext[w]))
                 if not (WORD_ISI == 0):
-                    events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, 'blank', 'blank', bs))
+                    events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
             if WORD_ISI == 0:
-                events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, 'blank', 'blank', bs))
+                events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
         elif stype == 'pictseq':
             for i, p in enumerate(f.split()):
                 if not p in mappictures:
                     mappictures[p] = stimuli.Picture(op.join(bp, p))
                     mappictures[p].preload()
-                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI), 'picture', p, mappictures[p]))
+                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI), cond, 'picture', p, mappictures[p]))
                 if not (PICTURE_ISI == 0):
-                    events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, 'blank', 'blank', bs))
+                    events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
             if PICTURE_ISI == 0:  # then erase the last picture
-                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, 'blank', 'blank', bs))
+                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
 
 
-exp.add_data_variable_names(['time', 'stype', 'id', 'target_time'])
+exp.add_data_variable_names([ 'condition', 'time', 'stype', 'id', 'target_time'])
 
 #%
 expyriment.control.start()
@@ -218,7 +218,7 @@ fs.present()  # clear screen, presenting fixation cross
 a = Clock()
 
 while not(events.empty()):
-    onset, stype, id, stim = events.get()
+    onset, cond, stype, id, stim = events.get()
     while a.time < (onset - 10):
         a.wait(1)
         k = kb.check()
@@ -226,7 +226,7 @@ while not(events.empty()):
             exp.data.add([a.time, 'keypressed,{}'.format(k)])
 
     stim.present()
-    exp.data.add([a.time, '{},{},{}'.format(stype, id, onset)])
+    exp.data.add(['{}'.format(cond), a.time, '{},{},{}'.format(stype, id, onset)])
 
     k = kb.check()
     if k is not None:
