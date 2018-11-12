@@ -144,7 +144,7 @@ mappictures = dict()
 mapvideos = dict()
 
 for listfile in csv_files:
-    stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'))
+    stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'), delimiter='\t')
     bp = op.dirname(listfile)
     for row in stimlist:
         cond, onset, stype, f = row[0], int(row[1]), row[2], row[3]
@@ -175,7 +175,7 @@ for listfile in csv_files:
             events.put((onset, cond, 'text', f, maptext[f]))
             events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
         elif stype == 'rsvp':
-            for i, w in enumerate(f.split()):
+            for i, w in enumerate(f.split(',')):
                 if not w in maptext:
                     maptext[w] = stimuli.TextLine(w,
                                                   text_font=TEXT_FONT,
@@ -189,7 +189,7 @@ for listfile in csv_files:
             if WORD_ISI == 0:
                 events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
         elif stype == 'pictseq':
-            for i, p in enumerate(f.split()):
+            for i, p in enumerate(f.split(',')):
                 if not p in mappictures:
                     mappictures[p] = stimuli.Picture(op.join(bp, p))
                     mappictures[p].preload()
