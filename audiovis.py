@@ -16,6 +16,7 @@ from queue import PriorityQueue
 # constants (which can be modified by optional command line arguments)
 WORD_DURATION = 450
 WORD_ISI = 200
+FS_DELAY = 100
 PICTURE_DURATION = 1000
 PICTURE_ISI = 0
 TEXT_DURATION = 3000
@@ -41,6 +42,10 @@ parser.add_argument('--total-duration',
                     type=int,
                     default=-1,
                     help="time to wait for after the end of the stimuli stream")
+parser.add_argument("--fs_delay_time",
+                    type=int,
+                    default=FS_DELAY,
+                    help="time between the end of blanck screen and the beginning of fixation cross")
 parser.add_argument("--rsvp-display-time",
                     type=int,
                     default=WORD_DURATION,
@@ -90,6 +95,7 @@ parser.add_argument("--window-size",
 
 args = parser.parse_args()
 splash_screen = args.splash
+FS_DELAY = args.fs_delay_time
 WORD_DURATION = args.rsvp_display_time
 PICTURE_DURATION = args.picture_display_time
 PICTURE_ISI = args.picture_isi
@@ -153,6 +159,7 @@ for listfile in csv_files:
                 mapsounds[f] = stimuli.Audio(op.join(bp, f))
                 mapsounds[f].preload()
             events.put((onset, cond, 'sound', f, mapsounds[f]))
+            events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
         elif stype == 'picture':
             if not f in mappictures:
                 mappictures[f] = stimuli.Picture(op.join(bp, f))
@@ -188,6 +195,7 @@ for listfile in csv_files:
                     events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
             if WORD_ISI == 0:
                 events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
+            events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
         elif stype == 'pictseq':
             for i, p in enumerate(f.split(',')):
                 if not p in mappictures:
@@ -198,7 +206,7 @@ for listfile in csv_files:
                     events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
             if PICTURE_ISI == 0:  # then erase the last picture
                 events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
-
+            events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
 
 exp.add_data_variable_names([ 'condition', 'time', 'stype', 'id', 'target_time'])
 
@@ -207,9 +215,24 @@ expyriment.control.start()
 
 
 if not (splash_screen is None):
-    splashs = stimuli.Picture(splash_screen)
-    splashs.present()
-    kb.wait_char(' ')
+    if splash_screen == 'instructions.csv':
+        instructions = csv.reader(io.open(splash_screen, 'r', encoding='utf-8-sig'), delimiter='\t')
+        for instruction_line in instructions:
+            instruction = stimuli.TextLine(instruction_line[0],
+                                              text_font=TEXT_FONT,
+                                              text_size=TEXT_SIZE,
+                                              text_colour=TEXT_COLOR,
+                                              background_colour=BACKGROUND_COLOR)
+            instruction.preload()
+            instruction.present()
+            exp.clock.wait(WORD_DURATION*4)
+            fs.present()
+            exp.clock.wait(WORD_ISI*3)
+
+    else:
+        splashs = stimuli.Picture(splash_screen)
+        splashs.present()
+        kb.wait_char(' ')
 
 wm.present()
 kb.wait_char('t')  # wait for scanner TTL
@@ -224,7 +247,6 @@ while not(events.empty()):
         k = kb.check()
         if k is not None:
             exp.data.add([a.time, 'keypressed,{}'.format(k)])
-
     stim.present()
     exp.data.add(['{}'.format(cond), a.time, '{},{},{}'.format(stype, id, onset)])
 
