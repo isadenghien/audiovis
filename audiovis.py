@@ -34,7 +34,7 @@ WINDOW_SIZE = (1220, 700)
 parser = argparse.ArgumentParser()
 parser.add_argument("--splash", help="displays a picture (e.g. containing instructions) before starting the experiment")
 
-parser.add_argument('csv_files',
+parser.add_argument('--csv_files',
                     nargs='+',
                     action="append",
                     default=[])
@@ -108,7 +108,7 @@ WINDOW_SIZE = tuple(args.window_size)
 TOTAL_EXPE_DURATION = args.total_duration
 WORD_ISI = args.rsvp_display_isi
 
-csv_files = args.csv_files[0]
+#csv_files = args.csv_files[0]
 
 expyriment.control.defaults.window_mode=True
 expyriment.control.defaults.window_size = WINDOW_SIZE
@@ -131,135 +131,207 @@ expyriment.control.initialize(exp)
 exp._screen_colour = BACKGROUND_COLOR
 kb = expyriment.io.Keyboard()
 bs = stimuli.BlankScreen(colour=BACKGROUND_COLOR)
-wm = stimuli.TextLine('Waiting for scanner sync (or press \'t\')',
-                      text_font=TEXT_FONT,
-                      text_size=TEXT_SIZE,
-                      text_colour=TEXT_COLOR,
-                      background_colour=BACKGROUND_COLOR)
 fs = stimuli.FixCross(size=(25, 25), line_width=3, colour=TEXT_COLOR)
 
-events = PriorityQueue()  # all stimuli will be queued here
+key_menu = ''
+
+#DISPLAY MENU
+def display_menu():
+    menu = "Pour effectuer un calibrage, tapez (c) \n"\
+            "Pour afficher les instructions, tapez (i) \n"\
+            "Pour commencer l'enregistrement, tapez (e) \n"
+    width_screen, height_screen =  exp.screen.size
+    menu_localizer = stimuli.TextBox(menu, size=(int(width_screen/1.5), int(height_screen/1.5)),
+                                      text_font=TEXT_FONT,
+                                      text_size=TEXT_SIZE,
+                                      text_colour=TEXT_COLOR,
+                                      background_colour=BACKGROUND_COLOR)
+    menu_localizer.present()
+    return kb.wait_char(['c', 'i', 'e'])
 
 
-# load stimuli
 
-mapsounds = dict()
-mapspeech = dict()
-maptext = dict()
-mappictures = dict()
-mapvideos = dict()
-
-for listfile in csv_files:
-    stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'), delimiter='\t')
-    bp = op.dirname(listfile)
-    for row in stimlist:
-        cond, onset, stype, f = row[0], int(row[1]), row[2], row[3]
-        if stype == 'sound':
-            if not f in mapsounds:
-                mapsounds[f] = stimuli.Audio(op.join(bp, f))
-                mapsounds[f].preload()
-            events.put((onset, cond, 'sound', f, mapsounds[f]))
-            events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
-        elif stype == 'picture':
-            if not f in mappictures:
-                mappictures[f] = stimuli.Picture(op.join(bp, f))
-                mappictures[f].preload()
-            events.put((onset, cond, 'picture', f, mappictures[f]))
-            events.put((onset + PICTURE_DURATION, cond, 'blank', 'blank', bs))
-        elif stype == 'video':
-            if not f in mapvideos:
-                mapvideos[f] = stimuli.Video(op.join(bp, f))
-                mapvideos[f].preload()
-            event.put((onset, cond, 'video', f, mapvideos[f]))
-        elif stype == 'text':
-            if not f in maptext:
-                maptext[f] = stimuli.TextLine(f,
-                                              text_font=TEXT_FONT,
+key_click = display_menu()
+key_menu = key_click[0]
+print(key_click)
+while (key_menu == 'c' or key_menu == 'i'):
+    if key_menu == 'c' :
+        calibrage = "Nous allons faire un calibrage"
+        calibration = stimuli.TextLine(calibrage, text_font=TEXT_FONT,
                                               text_size=TEXT_SIZE,
                                               text_colour=TEXT_COLOR,
                                               background_colour=BACKGROUND_COLOR)
-                maptext[f].preload()
-            events.put((onset, cond, 'text', f, maptext[f]))
-            events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
-        elif stype == 'rsvp':
-            for i, w in enumerate(f.split(',')):
-                if not w in maptext:
-                    maptext[w] = stimuli.TextLine(w,
+        calibration.present()
+        exp.clock.wait(2000)
+    #    kb.clear()
+    #    key_menu = ''
+    elif key_menu == 'i' :
+        if not (splash_screen is None):
+            if op.splitext(splash_screen)[1] == '.csv':
+                instructions = csv.reader(io.open(splash_screen, 'r', encoding='utf-8-sig'), delimiter='\t')
+                for instruction_line in instructions:
+                    instruction_duration, stype, instruction_line = instruction_line[0], instruction_line[1], instruction_line[2]
+                    if stype == 'text':
+                        instruction_line = instruction_line.replace('\BL', '\n')
+                        width_screen, height_screen =  exp.screen.size
+                        instruction = stimuli.TextBox(instruction_line, size=(int(width_screen/1.5), int(height_screen/1.5)),
+                                                          text_font=TEXT_FONT,
+                                                          text_size=TEXT_SIZE,
+                                                          text_colour=TEXT_COLOR,
+                                                          background_colour=BACKGROUND_COLOR)
+                        instruction.preload()
+                        instruction.present()
+                        #exp.clock.wait(WORD_DURATION*10)
+                        exp.clock.wait(int(instruction_duration))
+                        #fs.present()
+                        #exp.clock.wait(WORD_ISI*6)
+                    elif stype == 'sound':
+                        bp = op.dirname(splash_screen)
+                        print(op.join(bp, instruction_line))
+                        instruction = stimuli.Audio(op.join(bp, instruction_line))
+                        instruction.preload()
+                        instruction.present()
+                        fs.present()  
+                        exp.clock.wait(int(instruction_duration))
+            else:
+                splashs = stimuli.Picture(splash_screen)
+                splashs.present()
+                kb.wait_char(' ')
+    key_click = display_menu()
+    key_menu = key_click[0]
+if key_menu == 'e' :
+    choix_session = "Choix de la session \n"\
+            "Session 1, tapez (1) \n"\
+            "Session 2, tapez (2) \n"\
+            "Session 3, tapez (3) \n"\
+            "Session 4, tapez (4) \n"
+    width_screen, height_screen =  exp.screen.size
+    choix_session = stimuli.TextBox(choix_session, size=(int(width_screen/1.5), int(height_screen/1.5)),
+                                      text_font=TEXT_FONT,
+                                      text_size=TEXT_SIZE,
+                                      text_colour=TEXT_COLOR,
+                                      background_colour=BACKGROUND_COLOR)
+    choix_session.present()
+    session = kb.wait_char(['1', '2', '3', '4'])
+    if session[0] == '1' :
+        csv_files = ['./localizer/export_session1_localizer.csv']
+    elif session[0] == '2' :
+        csv_files = ['./localizer/export_session1_localizer.csv']
+    elif session[0] == '3' :
+        csv_files = ['./localizer/export_session1_localizer.csv']
+    elif session[0] == '4' :
+        csv_files = ['./localizer/export_session1_localizer.csv']
+        
+    wm = stimuli.TextLine('Waiting for scanner sync (or press \'t\')',
+                          text_font=TEXT_FONT,
+                          text_size=TEXT_SIZE,
+                          text_colour=TEXT_COLOR,
+                          background_colour=BACKGROUND_COLOR)
+    fs = stimuli.FixCross(size=(25, 25), line_width=3, colour=TEXT_COLOR)
+    
+    events = PriorityQueue()  # all stimuli will be queued here
+    
+    
+    # load stimuli
+    
+    mapsounds = dict()
+    mapspeech = dict()
+    maptext = dict()
+    mappictures = dict()
+    mapvideos = dict()
+    
+    for listfile in csv_files:
+        stimlist = csv.reader(io.open(listfile, 'r', encoding='utf-8-sig'), delimiter='\t')
+        bp = op.dirname(listfile)
+        for row in stimlist:
+            cond, onset, stype, f = row[0], int(row[1]), row[2], row[3]
+            if stype == 'sound':
+                if not f in mapsounds:
+                    mapsounds[f] = stimuli.Audio(op.join(bp, f))
+                    mapsounds[f].preload()
+                events.put((onset, cond, 'sound', f, mapsounds[f]))
+                events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
+            elif stype == 'picture':
+                if not f in mappictures:
+                    mappictures[f] = stimuli.Picture(op.join(bp, f))
+                    mappictures[f].preload()
+                events.put((onset, cond, 'picture', f, mappictures[f]))
+                events.put((onset + PICTURE_DURATION, cond, 'blank', 'blank', bs))
+            elif stype == 'video':
+                if not f in mapvideos:
+                    mapvideos[f] = stimuli.Video(op.join(bp, f))
+                    mapvideos[f].preload()
+                events.put((onset, cond, 'video', f, mapvideos[f]))
+            elif stype == 'text':
+                if not f in maptext:
+                    maptext[f] = stimuli.TextLine(f,
                                                   text_font=TEXT_FONT,
                                                   text_size=TEXT_SIZE,
                                                   text_colour=TEXT_COLOR,
                                                   background_colour=BACKGROUND_COLOR)
-                    maptext[w].preload()
-                events.put((onset + i * (WORD_DURATION + WORD_ISI), cond, 'text', w, maptext[w]))
-                if not (WORD_ISI == 0):
+                    maptext[f].preload()
+                events.put((onset, cond, 'text', f, maptext[f]))
+                events.put((onset + TEXT_DURATION, cond, 'blank', 'blank', fs))
+            elif stype == 'rsvp':
+                for i, w in enumerate(f.split(',')):
+                    if not w in maptext:
+                        maptext[w] = stimuli.TextLine(w,
+                                                      text_font=TEXT_FONT,
+                                                      text_size=TEXT_SIZE,
+                                                      text_colour=TEXT_COLOR,
+                                                      background_colour=BACKGROUND_COLOR)
+                        maptext[w].preload()
+                    events.put((onset + i * (WORD_DURATION + WORD_ISI), cond, 'text', w, maptext[w]))
+                    if not (WORD_ISI == 0):
+                        events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
+                if WORD_ISI == 0:
                     events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
-            if WORD_ISI == 0:
-                events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION, cond, 'blank', 'blank', bs))
-            events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
-        elif stype == 'pictseq':
-            for i, p in enumerate(f.split(',')):
-                if not p in mappictures:
-                    mappictures[p] = stimuli.Picture(op.join(bp, p))
-                    mappictures[p].preload()
-                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI), cond, 'picture', p, mappictures[p]))
-                if not (PICTURE_ISI == 0):
+                events.put((onset + i * (WORD_DURATION + WORD_ISI) + WORD_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
+            elif stype == 'pictseq':
+                for i, p in enumerate(f.split(',')):
+                    if not p in mappictures:
+                        mappictures[p] = stimuli.Picture(op.join(bp, p))
+                        mappictures[p].preload()
+                    events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI), cond, 'picture', p, mappictures[p]))
+                    if not (PICTURE_ISI == 0):
+                        events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
+                if PICTURE_ISI == 0:  # then erase the last picture
                     events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
-            if PICTURE_ISI == 0:  # then erase the last picture
-                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION, cond, 'blank', 'blank', bs))
-            events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
-
-exp.add_data_variable_names([ 'condition', 'time', 'stype', 'id', 'target_time'])
-
-#%
-expyriment.control.start()
-
-
-if not (splash_screen is None):
-    if splash_screen == 'instructions.csv':
-        instructions = csv.reader(io.open(splash_screen, 'r', encoding='utf-8-sig'), delimiter='\t')
-        for instruction_line in instructions:
-            instruction = stimuli.TextLine(instruction_line[0],
-                                              text_font=TEXT_FONT,
-                                              text_size=TEXT_SIZE,
-                                              text_colour=TEXT_COLOR,
-                                              background_colour=BACKGROUND_COLOR)
-            instruction.preload()
-            instruction.present()
-            exp.clock.wait(WORD_DURATION*4)
-            fs.present()
-            exp.clock.wait(WORD_ISI*3)
-
-    else:
-        splashs = stimuli.Picture(splash_screen)
-        splashs.present()
-        kb.wait_char(' ')
-
-wm.present()
-kb.wait_char('t')  # wait for scanner TTL
-fs.present()  # clear screen, presenting fixation cross
-
-a = Clock()
-
-while not(events.empty()):
-    onset, cond, stype, id, stim = events.get()
-    while a.time < (onset - 10):
-        a.wait(1)
+                events.put((onset + i * (PICTURE_DURATION + PICTURE_ISI) + PICTURE_DURATION + FS_DELAY , cond, 'fs', 'fs', fs))
+    
+    exp.add_data_variable_names([ 'condition', 'time', 'stype', 'id', 'target_time'])
+    
+    #%
+    expyriment.control.start()
+    
+    
+    
+    wm.present()
+    kb.wait_char('t')  # wait for scanner TTL
+    fs.present()  # clear screen, presenting fixation cross
+    
+    a = Clock()
+    
+    while not(events.empty()):
+        onset, cond, stype, id, stim = events.get()
+        while a.time < (onset - 10):
+            a.wait(1)
+            k = kb.check()
+            if k is not None:
+                exp.data.add([a.time, 'keypressed,{}'.format(k)])
+        stim.present()
+        exp.data.add(['{}'.format(cond), a.time, '{},{},{}'.format(stype, id, onset)])
+    
         k = kb.check()
         if k is not None:
             exp.data.add([a.time, 'keypressed,{}'.format(k)])
-    stim.present()
-    exp.data.add(['{}'.format(cond), a.time, '{},{},{}'.format(stype, id, onset)])
-
-    k = kb.check()
-    if k is not None:
-        exp.data.add([a.time, 'keypressed,{}'.format(k)])
-
-
-fs.present()
-
-if TOTAL_EXPE_DURATION != -1:
-    while a.time < TOTAL_EXPE_DURATION:
-        kb.process_control_keys()
-        a.wait(100)
-
-expyriment.control.end('Merci !', 2000)
+    
+    
+    fs.present()
+    
+    if TOTAL_EXPE_DURATION != -1:
+        while a.time < TOTAL_EXPE_DURATION:
+            kb.process_control_keys()
+            a.wait(100)
+    
+    expyriment.control.end('Merci !', 2000)
